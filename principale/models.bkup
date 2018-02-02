@@ -1,0 +1,69 @@
+from django.db import models
+from django.contrib.auth.models import User
+
+# Create your models here.
+
+class Souscase(models.Model):
+	titre = models.CharField(max_length=20)
+	nbr_char_disp = models.IntegerField()
+	valeur = models.CharField(max_length=600)
+	
+	def __str__(self):
+		return self.titre
+
+class Case(models.Model):
+	titre = models.CharField(max_length=20)
+	nbr_char_disp = models.IntegerField()
+	valeur = models.CharField(max_length=600)
+	soucase = models.ForeignKey(Souscase, related_name='case', on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.titre
+
+class Livre(models.Model):
+	titre = models.CharField(max_length=100, unique=True)
+#	bibliotheque = models.ForeignKey(Bibliotheque, related_name='livres')
+
+	def __str__(self):
+		return self.titre
+
+class Paragraphe(models.Model):
+	numero = models.IntegerField()
+	texte = models.TextField()
+	image = models.CharField(max_length=50)
+	livre = models.ForeignKey(Livre, related_name='paragraphe', on_delete=models.CASCADE)
+
+	def __str__(self):
+		return self.numero
+
+class Bibliotheque(models.Model):
+	nom = models.CharField(max_length=30, unique=True)
+	livre = models.ForeignKey(Livre, related_name='bibliotheque', on_delete=models.CASCADE) #CASCADE??? nécessaire mais effet inconnu
+
+	def __str__(self):
+		return self.nom
+
+class Para_lu(models.Model):
+	numero = models.IntegerField()
+	ordre = models.IntegerField()
+
+	def __str__(self):
+		return self.numero
+
+class Utilisateur(models.Model):
+	nom = models.CharField(max_length=20, unique=True)
+	user = models.ForeignKey(User, related_name='utilisateur', on_delete=models.CASCADE)
+	
+	def __str__(self):
+		return self.nom
+
+class Personnage(models.Model):
+	nom = models.CharField(max_length=30, unique=True)
+	notes = models.TextField()
+	joueur = models.ForeignKey(Utilisateur, related_name='personnage', on_delete=models.CASCADE)
+	livre = models.ForeignKey(Livre, related_name='personnage', on_delete=models.CASCADE)
+	para_lu = models.ForeignKey(Para_lu, related_name='personnage', on_delete=models.CASCADE) 
+
+	def __str__(self):
+		return self.nom
+

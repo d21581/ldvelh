@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block top %}
+  
+	<select>
+		{% for joueur in les_joueurs %}
+			<option value="{{ joueur }}"{% if joueur.nom == dern_joueur.val_str %} selected="selected" {% endif %}> {{ joueur.nom }} </option>
+		{% endfor %}
+	</select>	
+
+	<select>
+		{% for pers in les_pers %}
+			<option value="{{ pers }}"{% if pers.nom == dern_pers.val_str %} selected="selected" {% endif %}> {{ pers.nom }} </option>
+		{% endfor %}
+	</select>	
+
+{% endblock %}
+
+{% block milieu-gauche %}
+{% endblock %}
+{% block milieu-centre %}
+	<table>
+	{% for case in cases_a_afficher %}
+		<tr>
+			<td>{{ forloop.counter }}</td><td class='cases'>{{ case.titre }}</td> <td class='cases'> {{ les_vals.1.1 }}  </td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}
+
+{% block milieu-droite %}
+{% endblock %}

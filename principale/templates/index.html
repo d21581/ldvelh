@@ -1,0 +1,76 @@
+{% extends "base_generic.html" %}
+
+{% block top %}
+	<table>
+		<tr>
+			<td>
+			 	<form id="formulaire_choix_perso_joueur"> <!--action="" method="post"> -->
+				{% csrf_token  %}
+				<select id="selection_joueur" name="joueur">
+					{% for joueur in les_joueurs %}
+						<option value="{{ joueur }}"{% if joueur.nom == dern_joueur.val_str %} selected="selected" {% endif %}> {{ joueur.nom }} </option>
+					{% endfor %}
+				</select>	
+			
+				<select id="selection_personnage" name="personnage">
+					{% for pers in les_pers %}
+						<option value="{{ pers }}"{% if pers.nom == dern_pers.val_str %} selected="selected" {% endif %}> {{ pers.nom }} </option>
+					{% endfor %}
+				</select>
+				<!-- <button id="changer-btn"> Changer</button>	-->
+				</form>
+			</td>
+			<td>{{ nom_dern_livre }}</td>
+		</tr>
+	</table>
+{% endblock %}
+
+{% block milieu-gauche %}
+{% endblock %}
+{% block milieu-centre %}
+	<form id="tableau_valeurs">
+	{% csrf_token  %}
+		<table>
+		{% for une_val in les_vals %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td class='cases'>{{ une_val.0 }}</td>
+				<td class='cases' id="val_actuelle_{{ forloop.counter  }}"> {{ une_val.1 }}  </td>
+				<td class="espaceur_nouv_val"></td>
+				<td>Nouvelle valeur:</td>
+				<td><input type="text" name="{{ une_val.0  }}" id="val_{{ forloop.counter  }}" size=5></td>
+				<!--<td><input type="text" value="{{ une_val.1  }}" name="{{ une_val.0  }}" id="val_{{ forloop.counter  }}" size=5></td>-->
+				<!--<td id='{{ une_val.0 }}'> {{ une_val.1  }}  </td>-->
+				<td id="bout_{{ forloop.counter  }}_+1" class="bout_ajust">+1</td>
+				<td class="espaceur_nouv_val"></td>
+				<td id="bout_{{ forloop.counter  }}_-1" class="bout_ajust">-1</td>
+			</tr>
+		{% endfor %}
+			<tr>
+				<td></td><td></td><td></td><td></td><td></td><td colspan="3"><button id="commettre-btn" type="button">Commettre</button></td>
+			</tr>
+		</table>
+	</form>
+	<form id="form-notes">
+	{% csrf_token  %}
+		<table>
+			<tr>
+				<td><textarea id="ta_notes" name="notes" rows="7" cols="45">{{ notes  }}</textarea></td><td><button id="commettre-notes" type="button">Noter</button></td>
+			</tr>
+		</table>
+	</form>
+{% endblock %}
+
+{% block milieu-droite %}
+	<div id="lancer_de">Lancer 1d6</div>
+	<div class="" id="resultat">...</div>
+	
+	<div id="lancer_2des">Lancer 2d6</div>
+	<div class="" id="resultat-2d6">...</div>
+{% endblock %}
+
+{% block en-bas  %}
+	
+	<div id="debugging">fenêtre debug -- rien à afficher :)</div>	
+
+{% endblock  %}
