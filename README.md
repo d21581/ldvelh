@@ -1,2 +1,1 @@
-# ldvelh
-# mon projet pour lire des livre dont vous êtes le héro
+# Aide pour lire des livres dont vous êtes le héro.
