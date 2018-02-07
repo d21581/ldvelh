@@ -23,7 +23,7 @@
 }
 
 .milieu-gauche {
-	width: 200px;
+	/*width: 200px;*/
 	/*border-style: solid;
 	border-color: black;
 	border-width: 3px;*/
@@ -31,7 +31,7 @@
 }
 
 .milieu-centre{
-	width:50%;
+	width:75%;
 	/*flex-grow: 3;*/
 	/*border-style: solid;
 	border-color: black;
@@ -41,7 +41,7 @@
 
 .milieu-droite{
 	/*flex-grow:1;*/
-	width: 200px;
+	width: 120px;
 	/*border-style: solid;
 	border-color: black;
 	border-width: 3px;*/
