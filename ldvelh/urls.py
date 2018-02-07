@@ -26,6 +26,5 @@ urlpatterns = [
 # Ajouter par moi:
 urlpatterns += [
 	url(r'^principale/', include('principale.urls')),
-	url(r'^catalog/', include('catalog.urls')),
 	url(r'^$', RedirectView.as_view(url='/principale/', permanent=True))
 ]
