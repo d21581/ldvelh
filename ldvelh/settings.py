@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '86xl!pkvxwczvlwuz7nc0f8^3z)xa#vt0#3*#(9jz=tuo-g9vw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False #True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'www.goldorakgo.ca', 'd21581.pythonanywhere.com']
 
 
 # Application definition
@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'principale.apps.PrincipaleConfig',
-	'catalog.apps.CatalogConfig',
 ]
 
 MIDDLEWARE = [
