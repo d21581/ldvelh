@@ -17,7 +17,7 @@
 						<option value="{{ pers }}"{% if pers.nom == dern_pers.val_str %} selected="selected" {% endif %}> {{ pers.nom }} </option>
 					{% endfor %}
 				</select>
-				<!-- <button id="changer-btn"> Changer</button>	-->
+				<button id="changer-joueur-perso-btn"> Changer</button>
 				</form>
 			</td>
 			<td>{{ nom_dern_livre }}</td>
@@ -62,10 +62,12 @@
 {% endblock %}
 
 {% block milieu-droite %}
-	<div id="lancer_de">Lancer 1d6</div>
+	<!--<div id="lancer_de">Lancer 1d6</div> -->
+	<img src="/static/image/1-red-die-80.png" id="lancer_de" alt="1d6" height="79" width="80">
 	<div class="" id="resultat">...</div>
 	
-	<div id="lancer_2des">Lancer 2d6</div>
+	<img src="/static/image/2-red-dice-92.png" id="lancer_2des" alt="1d6" height="84" width="92">
+	<!--<div id="lancer_2des">Lancer 2d6</div> -->
 	<div class="" id="resultat-2d6">...</div>
 {% endblock %}
 

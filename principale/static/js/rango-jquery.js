@@ -17,13 +17,16 @@ $(document).ready(function() {
 			de1=chiffreAleatoire(1, 6);
 			de2=chiffreAleatoire(1, 6);
 			total=de1+de2;
+			de1=de1.toString();
+			de2=de2.toString();
 			resultat=total/*.concat('(', de2.toString());/*.concat('(').concat(de1).concat('+').concat(de2).concat(')')*/
 			/*resultat = chiffreAleatoire(2, 12);*/
+			resultat=de1 + '+' + de2 + '=' + total.toString();
 			$('#resultat-2d6').text(resultat);
 	    });
 
 		/*$(document).on('submit', '#formulaire_choix_perso_joueur', function(e){*/
-		jQuery('#formulaire_choix_perso_joueur').click(function(e){
+		jQuery('#changer-joueur-perso-btn').click(function(e){
 			e.preventDefault();
 			/*$.ajax({*/
 			jQuery.ajax({
