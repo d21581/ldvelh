@@ -56,3 +56,18 @@
 .espaceur_nouv_val{
 	width:15px;
 }
+
+.combat{
+	border-width: 1px 0px 1px 0px;
+	border-style: solid;
+	border-color: blue;
+}
+
+.val_combat{
+	width: 40px;
+	text-align: center;
+}
+
+.table_combat{
+	margin: 15px 0px 15px 0px;
+}

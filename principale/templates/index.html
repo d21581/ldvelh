@@ -39,8 +39,6 @@
 				<td class="espaceur_nouv_val"></td>
 				<td>Nouvelle valeur:</td>
 				<td><input type="text" name="{{ une_val.0  }}" id="val_{{ forloop.counter  }}" size=5></td>
-				<!--<td><input type="text" value="{{ une_val.1  }}" name="{{ une_val.0  }}" id="val_{{ forloop.counter  }}" size=5></td>-->
-				<!--<td id='{{ une_val.0 }}'> {{ une_val.1  }}  </td>-->
 				<td id="bout_{{ forloop.counter  }}_+1" class="bout_ajust">+1</td>
 				<td class="espaceur_nouv_val"></td>
 				<td id="bout_{{ forloop.counter  }}_-1" class="bout_ajust">-1</td>
@@ -59,6 +57,17 @@
 			</tr>
 		</table>
 	</form>
+	<table class="table_combat">
+		<tr>
+			<th colspan="5" class="combat">Combats</th>
+		</tr>
+		<tr>
+			<td>Habileté:</td><td id="val_98" class="val_combat">10</td><td class="bout_ajust_combat" id="bout_98_+1"> +1 </td><td class="espaceur_nouv_val"></td><td class="bout_ajust_combat" id="bout_98_-1"> -1 </td>
+		</tr>
+		<tr>
+			<td>Endurance:</td><td id="val_99" class="val_combat">10</td><td class="bout_ajust_combat" id="bout_99_+1"> +1 </td><td class="espaceur_nouv_val"></td><td class="bout_ajust_combat" id="bout_99_-1"> -1 </td>
+		</tr>
+	</table>
 {% endblock %}
 
 {% block milieu-droite %}
