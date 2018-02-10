@@ -103,7 +103,13 @@ $(document).ready(function() {
 
 
 		$('#des_comb_btn').click(function(){
-			var hab_pers = $('td:contains("HABILETÉ")').next('td').text();
+			/*var hab_pers = $('td:contains("HABILETÉ")').next('td').text();*/
+			var hab_pers = $("td").filter(function() {
+    			return $(this).text() === "HABILETÉ";
+			}).next('td').text();
+			/*var hab_pers_mod = $("input").filter(function() {
+    			return $(this).name() === "HABILETÉ";
+			}).val();*/
 			var hab_pers_mod =  $('[name="HABILETÉ"]').val();
 			if (hab_pers_mod != '') {
 				hab_pers = hab_pers_mod
