@@ -102,6 +102,27 @@ $(document).ready(function() {
 		});
 
 
+		$('#des_comb_btn').click(function(){
+			var hab_pers = $('td:contains("HABILETÉ")').next('td').text();
+			var hab_pers_mod =  $('[name="HABILETÉ"]').val();
+			if (hab_pers_mod != '') {
+				hab_pers = hab_pers_mod
+			}
+			var hab_en = $('#val_98').text();
+			
+			var de1_pers = chiffreAleatoire(1,6); 
+			var de2_pers = chiffreAleatoire(1,6); 
+			var de1_en = chiffreAleatoire(1,6); 
+			var de2_en = chiffreAleatoire(1,6); 
+
+			var tot_pers = parseInt(hab_pers) + parseInt(de1_pers) + parseInt(de2_pers);
+			var tot_en = parseInt(hab_en) + parseInt(de1_en) + parseInt(de2_en);
+
+			$('#resul_comb_pers').html(hab_pers.toString() + ' + ' + de1_pers.toString() + ' + ' + de2_pers.toString() + ' = ' + tot_pers.toString());
+			$('#resul_comb_en').html(hab_en.toString() + ' + ' + de1_en.toString() + ' + ' + de2_en.toString() + ' = ' + tot_en.toString());
+		});
+
+
 		jQuery('#commettre-btn').click(function(e){
 			e.preventDefault();
 			var donnees = $("#tableau_valeurs").serialize();
