@@ -8,6 +8,20 @@ $(document).ready(function() {
 		}
 
 
+		function trouver_val_dune_case(nom_case){
+			/* Trouver la valeur originale  */
+			var val_orig = $("td").filter(function() {
+    			return $(this).text() === nom_case;
+			}).next('td').text();
+			var val = val_orig;
+			/* Trouver la valeur modifié  */
+			var val_mod =  $('[name=' + nom_case + ']').val();
+			if (val_mod != '') {
+				val = val_mod;
+			}
+			return val;
+		}
+
 		$("#lancer_de").click( function(event) {
 			resultat = chiffreAleatoire(1, 6);
 			$('#resultat').text(resultat);
@@ -104,16 +118,19 @@ $(document).ready(function() {
 
 		$('#des_comb_btn').click(function(){
 			/*var hab_pers = $('td:contains("HABILETÉ")').next('td').text();*/
-			var hab_pers = $("td").filter(function() {
+			/*var hab_pers = $("td").filter(function() {
     			return $(this).text() === "HABILETÉ";
-			}).next('td').text();
+			}).next('td').text();*/
 			/*var hab_pers_mod = $("input").filter(function() {
     			return $(this).name() === "HABILETÉ";
 			}).val();*/
-			var hab_pers_mod =  $('[name="HABILETÉ"]').val();
+			/*var hab_pers_mod =  $('[name="HABILETÉ"]').val();
 			if (hab_pers_mod != '') {
 				hab_pers = hab_pers_mod
-			}
+			}*/
+
+			hab_pers = trouver_val_dune_case("HABILETÉ");
+
 			var hab_en = $('#val_98').text();
 			
 			var de1_pers = chiffreAleatoire(1,6); 
@@ -126,6 +143,17 @@ $(document).ready(function() {
 
 			$('#resul_comb_pers').html(hab_pers.toString() + ' + ' + de1_pers.toString() + ' + ' + de2_pers.toString() + ' = ' + tot_pers.toString());
 			$('#resul_comb_en').html(hab_en.toString() + ' + ' + de1_en.toString() + ' + ' + de2_en.toString() + ' = ' + tot_en.toString());
+
+			/* Enlever deux points d'endurance au perdant  */
+			if (tot_pers > tot_en) { /* le joueur gagne  */
+				end_act = parseInt($('#val_99').text());
+				var nouv_val = end_act -2;
+				$('#val_99').html(nouv_val);			
+			}
+			if (tot_en > tot_pers) { /* l'ennemie gagne  */
+				end_act = trouver_val_dune_case("ENDURANCE");
+				$("[name='ENDURANCE']").val(parseInt(end_act) - 2);
+			}
 		});
 
 
