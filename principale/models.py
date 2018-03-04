@@ -61,6 +61,7 @@ class Joueur(models.Model):
 class Livre(models.Model):
 	titre = models.CharField(max_length=100, unique=True)
 	bibliotheque = models.ForeignKey('Bibliotheque', related_name='livre', on_delete=models.SET_NULL, null=True)
+	nbr_paras = models.IntegerField(default=400)
 
 	def __str__(self):
 		return self.titre

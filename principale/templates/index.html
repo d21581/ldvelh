@@ -84,7 +84,16 @@
 {% endblock %}
 
 {% block en-bas  %}
-	
-	<div id="debugging">fenêtre debug -- rien à afficher :)</div>	
+	<div id="paras_deja_lus">
+		{% for un_para_lu in liste_paras_lu %}
+			<div class="case_paras_lu" id="para_lu_{{ un_para_lu }}_{{ nbr_paras_lu }}">  {{ un_para_lu }} - </div>
+		{% endfor %}
+	</div>
+	<div id="les_paras">		
+		{% for un_para in liste_paras %}
+			<div class="case_paras" id="para_{{ un_para }}"> {{ un_para }} </div>
+		{% endfor %}
+	</div>
+	<!--<div id="debugging">fenêtre debug -- rien à afficher :)</div>-->
 
 {% endblock  %}

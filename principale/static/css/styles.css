@@ -48,6 +48,30 @@
 	text-align: right;
 }
 
+.en-bas{
+	display: flex;
+	flex-flow: column wrap;
+}
+
+#les_paras{
+	display: flex;
+	flex-flow: row wrap;
+	margin-top: 5px;
+}
+
+#paras_deja_lus{
+	display:flex;
+	flex-flow: row wrap;
+	border-width: 1px 0px 1px 0px;
+	border-style: solid;
+	border-color: orange;
+	margin-top: 20px;	
+}
+
+.case_paras{
+	padding: 5px 5px 0px 5px;
+}
+
 .cases{
 	border: 2px solid black;
 	min-width: 50px;

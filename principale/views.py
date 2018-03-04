@@ -20,6 +20,12 @@ def lister_les_joueurs():
 def toutes_les_cases():
 	return Case.objects.all()
 
+def creer_liste_para_dispo(nbr_paras):
+	liste_paras = []
+	for x in range(nbr_paras):
+		liste_paras.append(x+1)
+	return liste_paras
+
 def les_valeurs(nom_perso, dern_livre_nom):
 	'''
 		Structure des données:
@@ -74,7 +80,10 @@ def index(request):
     dern_pers_notes = dern_livre_obj.notes
     #cases_a_afficher = Case.objects.filter(livres__titre__exact=dern_livre_nom)
     les_vals = les_valeurs(dern_pers.val_str, dern_livre_nom)
-    
+    liste_paras = creer_liste_para_dispo(Livre.objects.get(titre__exact=dern_livre_nom).nbr_paras)
+
+    liste_paras_lu = Para_lu.objects.filter(personnage__nom__exact=dern_livre_obj.nom).order_by('ordre')
+    nbr_paras_lu = len(liste_paras_lu)
  
     # Render the HTML template index.html with the data in the context variable
     return render(
@@ -89,6 +98,9 @@ def index(request):
 				 'debugs':info_debug,
 				 'notes':dern_pers_notes,
 				 'nom_dern_livre':dern_livre_nom,
+				 'liste_paras':liste_paras,
+				 'liste_paras_lu':liste_paras_lu,
+				 'nbr_paras_lu':nbr_paras_lu,
 				 'les_vals':les_vals},
     )
 
@@ -140,7 +152,18 @@ def sauv_notes(request):
 		return HttpResponse('')	
 
 
-
+def ajouter_para_lu(request):
+	if request.method == 'POST':
+		#tout_info_raw = request.POST
+		num_para = request.POST['numero']
+		ordre = request.POST['ordre']
+		nom_personnage = request.POST['personnage']
+		pers_obj = Personnage.objects.get(nom=nom_personnage)
+		Para_lu(personnage=pers_obj, ordre=int(ordre)+2, numero=int(num_para)).save()
+			
+		
+		return HttpResponse('')	
+	
 
 
 

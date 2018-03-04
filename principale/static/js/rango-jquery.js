@@ -116,6 +116,36 @@ $(document).ready(function() {
 		});
 
 
+		$('.case_paras').click(function(){
+			var para_clique = this.id;
+			var long_string_id = para_clique.length;
+			para_clique = para_clique.substring(5, long_string_id);
+			var ordre = $('.case_paras_lu:first').attr("id");
+			var ordre_arr = ordre.split("_");
+			var ordre_final = ordre_arr[(ordre_arr.length)-1];
+			var numero_formate = para_clique;
+			var personnage_sel = $('#selection_personnage').val();
+
+			jQuery.ajax({
+				type:'POST',
+				url:'/principale/ajouter_para_lu/',
+				data:{
+					ordre:ordre_final,
+					numero:numero_formate,
+					personnage:personnage_sel,
+					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+				},
+				success:function(response){
+					location.reload();
+				},
+				error:function(response){
+					alert('toujours pas...');
+					console.log(response);
+				}
+			});
+			
+		});
+
 		$('#des_comb_btn').click(function(){
 			/*var hab_pers = $('td:contains("HABILETÉ")').next('td').text();*/
 			/*var hab_pers = $("td").filter(function() {
