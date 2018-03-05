@@ -58,8 +58,6 @@ def les_valeurs(nom_perso, dern_livre_nom):
 						# aucune valeur trouve pour ce titre de case
 						liste_complete_ordonne.append([str(une_case.titre), 'devrait_vide'])
 
-			#info_debug.append([nom_case_relate, str(une_val.case), str(trouve), str(nbr_valeurs_inspectes)])
-
 	return liste_complete_ordonne 
 				
 
@@ -137,7 +135,6 @@ def changer_valeurs(request):
 			if la_valeur != '':
 				Valeur_case.objects.filter(case__titre=nom_case, personnage__nom=nom_perso).update(valeur=int(la_valeur))
 			
-		
 		return HttpResponse('')	
 
 
@@ -148,7 +145,17 @@ def sauv_notes(request):
 		texte = str(request.POST['notes'])
 		Personnage.objects.filter(nom=nom_perso).update(notes=texte)
 			
-		
+		return HttpResponse('')	
+
+
+def enlever_para_lu(request):
+	if request.method == 'POST':
+		num_para = request.POST['numero']
+		nom_personnage = request.POST['personnage']
+		ordre_lu = request.POST['ordre_para']
+		pers_obj = Personnage.objects.get(nom=nom_personnage)
+		Para_lu.objects.get(numero=num_para, personnage=pers_obj, ordre=int(ordre_lu)+1).delete()	
+
 		return HttpResponse('')	
 
 
@@ -161,7 +168,6 @@ def ajouter_para_lu(request):
 		pers_obj = Personnage.objects.get(nom=nom_personnage)
 		Para_lu(personnage=pers_obj, ordre=int(ordre)+2, numero=int(num_para)).save()
 			
-		
 		return HttpResponse('')	
 	
 

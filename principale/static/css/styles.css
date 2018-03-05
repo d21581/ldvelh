@@ -59,6 +59,17 @@
 	margin-top: 5px;
 }
 
+#enlever_dernier_para_lu{
+	padding: 0px 0px 0px 10px;
+	font-weight: bold;
+	color: red;
+	
+}
+
+.esp_para_lu{
+	padding: 0px 5px 0px 2px;
+}
+
 #paras_deja_lus{
 	display:flex;
 	flex-flow: row wrap;

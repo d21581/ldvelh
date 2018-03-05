@@ -27,14 +27,34 @@ $(document).ready(function() {
 			$('#resultat').text(resultat);
 	    });
 		
+		$("#enlever_dernier_para_lu").click( function(event) {
+			var ordre = $('.case_paras_lu:last').attr("id");
+			var ordre_arr = ordre.split("_");
+			var ordre_final = ordre_arr[(ordre_arr.length)-1];
+
+			jQuery.ajax({
+				type:'POST',
+				url:'/principale/enlever_para_lu/',
+				data:{
+					personnage:$('#selection_personnage').val(),
+					numero:$('.case_paras_lu').last().text(),
+					ordre_para:  ordre_final,
+					csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+				},
+				success:function(response){
+					console.log(response);
+					location.reload();
+				}
+			})
+		});
+		
 		$("#lancer_2des").click( function(event) {
 			de1=chiffreAleatoire(1, 6);
 			de2=chiffreAleatoire(1, 6);
 			total=de1+de2;
 			de1=de1.toString();
 			de2=de2.toString();
-			resultat=total/*.concat('(', de2.toString());/*.concat('(').concat(de1).concat('+').concat(de2).concat(')')*/
-			/*resultat = chiffreAleatoire(2, 12);*/
+			resultat=total
 			resultat=de1 + '+' + de2 + '=' + total.toString();
 			$('#resultat-2d6').text(resultat);
 	    });
@@ -147,17 +167,6 @@ $(document).ready(function() {
 		});
 
 		$('#des_comb_btn').click(function(){
-			/*var hab_pers = $('td:contains("HABILETÉ")').next('td').text();*/
-			/*var hab_pers = $("td").filter(function() {
-    			return $(this).text() === "HABILETÉ";
-			}).next('td').text();*/
-			/*var hab_pers_mod = $("input").filter(function() {
-    			return $(this).name() === "HABILETÉ";
-			}).val();*/
-			/*var hab_pers_mod =  $('[name="HABILETÉ"]').val();
-			if (hab_pers_mod != '') {
-				hab_pers = hab_pers_mod
-			}*/
 
 			hab_pers = trouver_val_dune_case("HABILETÉ");
 

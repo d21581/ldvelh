@@ -86,8 +86,11 @@
 {% block en-bas  %}
 	<div id="paras_deja_lus">
 		{% for un_para_lu in liste_paras_lu %}
-			<div class="case_paras_lu" id="para_lu_{{ un_para_lu }}_{{ nbr_paras_lu }}">  {{ un_para_lu }} - </div>
+			<div class="case_paras_lu" id="para_lu_{{ un_para_lu }}_{{ nbr_paras_lu }}">{{ un_para_lu }}</div><div class="esp_para_lu">-</div>
 		{% endfor %}
+	<div id="enlever_dernier_para_lu">
+		&#x21E4;	
+	</div>
 	</div>
 	<div id="les_paras">		
 		{% for un_para in liste_paras %}
